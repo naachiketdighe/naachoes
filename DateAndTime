@@ -1,0 +1,94 @@
+# adding * in the argument part of a function allows you to pass multiple variables as arguments
+# Adding * in the argument allows you to pass an unspecified amount of variables.
+def mulit_add(*args):
+    total = 0
+    for i in args:
+        total = total + i
+    return total
+
+
+print(mulit_add(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
+
+# importing today's date and time
+from datetime import date
+from datetime import time
+from datetime import datetime
+from datetime import timedelta
+
+today = date.today()
+print("Today's date is ", today)
+print("Today's weekday number is ", today.weekday())
+days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+print("Which is a :", days[today.weekday()])
+today = datetime.today()
+print("Today's date and time is ", today)
+
+# printing out the currrent year
+now = datetime.now()
+print(now.strftime("The currrent year is %Y"))
+
+# printing out the entire date, month, month name and year
+# %a - current day, %d - current date , %b - current month name , %y - current year
+print(now.strftime("%a, %d, %B, %y"))
+
+# printing locale times
+# %c - current loclae date and time, %x - loclale date, %X - locale time
+print(now.strftime("Loclae date and time %c"))
+print(now.strftime("Locale time is %X"))
+print(now.strftime("Locale date is %x"))
+
+# %I/%H - 12/24 hour clock , %M - minutes , %S - second , %p - locale AM/PM
+print(now.strftime("Time right now is : %I:%M:%S %p"))
+print(now.strftime("24-hour clock: %H:%M:%S"))
+
+# Timedelta can be used to predict future dates and perform mathematical operations
+
+print(timedelta(days=365, hours=5, minutes=5))
+
+# To find the date an year from now
+print("The date an year from now is " + str(now + timedelta(days=365)))
+
+# using multiple arguments in timedelta
+# to find the time it was 1 week and 2 days ago
+print("The time one week and 2 days ago was " + str(now - timedelta(weeks=1, days=2)))
+
+# Calculate the date 1 week ago formatted as a string
+t = now - timedelta(weeks=1)
+# use .strftime to convert it into a string
+print("The date 1 week ago was " + t.strftime("%d %B , %y"))
+
+# Write a script counting how many days it is until april fools day
+
+# first we get today's date
+today = date.today()
+print(today)
+aprfd = date(today.year,4,1)
+# check if aprils fools has already passed
+if aprfd < today:
+    print("Aprils fools already went by %d days ago" % (today-aprfd).days)
+    aprfd = date(today.year + 1, 4 , 1)
+    # or we can also use the replace function
+    # aprfd.replace(year = today.year+1)
+elif aprfd == today:
+    print("Today is april fools day!")
+#print(aprfd)
+print("Aprils fools is %d days away" % (aprfd - today).days)
+
+# Working with calenders
+import calendar
+
+# creating a plain text calender
+c = calendar.TextCalendar(calendar.THURSDAY)
+st = c.formatmonth(2021,7,0,0)
+print(st)
+
+# Creating a HTML calender
+d = calendar.HTMLCalendar(calendar.THURSDAY)
+dt = d.formatmonth(2021,7)
+
+for i in d.itermonthdays(2021,7):
+    print(i)
+    # the zeros in this indicate days of the week that are a part of another month
+
+
+
